@@ -1,0 +1,78 @@
+/* Full-page background with ESEC logo */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://www.google.com/imgres?q=esec%20logo&imgurl=https%3A%2F%2Fyt3.googleusercontent.com%2FYqIFJ23VQNEpWwBQksyXyqQapXaM1l6t3a9tTnaXKuQIiV8VzlrMWoiLSS97xJ-3HRCizpEE%3Ds900-c-k-c0x00ffffff-no-rj&imgrefurl=https%3A%2F%2Fwww.youtube.com%2F%40esecindia&docid=TaCmeLtHJf10YM&tbnid=Ip5yw0RB3WnIdM&vet=12ahUKEwjm-JDClIOTAxWCTmwGHRVLCIgQnPAOegQIGRAB..i&w=900&h=900&hcb=2&ved=2ahUKEwjm-JDClIOTAxWCTmwGHRVLCIgQnPAOegQIGRAB'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Overlay to make text readable */
+.login-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+/* Centered form container */
+.login-form-container {
+  position: relative;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  width: 350px;
+}
+
+/* Input fields */
+.input-field {
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Login button */
+.login-btn {
+  border-radius: 10px;
+  padding: 12px;
+  background: linear-gradient(90deg, #007bff, #00d4ff);
+  border: none;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: linear-gradient(90deg, #00d4ff, #007bff);
+  transform: scale(1.05);
+}
+
+/* Google button */
+.google-btn {
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.google-btn:hover {
+  transform: scale(1.05);
+  background: #d44638; /* Darker red on hover */
+}

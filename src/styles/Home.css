@@ -1,0 +1,79 @@
+/* Full-page background */
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu1FV6yRblEq97Iw-eTzlsHl2yq0g21sA1AA&s'); /* Replace with your logo path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Dark overlay to improve readability */
+.home-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+/* Content centered above overlay */
+.home-content {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 40px;
+  max-width: 700px;
+  border-radius: 15px;
+}
+
+/* Titles */
+.home-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+}
+
+.home-subtitle {
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+/* Buttons */
+.btn-home {
+  width: 250px;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-home:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* Different button colors */
+.btn-primary {
+  background: linear-gradient(90deg, #007bff, #00d4ff);
+  border: none;
+  color: #fff;
+}
+
+.btn-success {
+  background: linear-gradient(90deg, #28a745, #85e085);
+  border: none;
+  color: #fff;
+}
+
+.btn-danger {
+  background: linear-gradient(90deg, #dc3545, #ff7f7f);
+  border: none;
+  color: #fff;
+}

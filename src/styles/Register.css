@@ -1,0 +1,72 @@
+/* Full-page blue gradient background */
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1e3c72, #2a5298, #4e89ff, #1e3c72);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  position: relative;
+}
+
+/* Animate the gradient */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Centered form container */
+.register-form-container {
+  background-color: rgba(255,255,255,0.95);
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  width: 350px;
+  text-align: center;
+}
+
+/* Input fields */
+.input-field {
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #1e3c72; /* blue focus */
+  box-shadow: 0 0 8px rgba(30, 60, 114, 0.5);
+}
+
+/* Register button */
+.btn-register {
+  border-radius: 10px;
+  padding: 12px;
+  background: linear-gradient(90deg, #1e3c72, #4e89ff);
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-register:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* Google button */
+.btn-google {
+  border-radius: 10px;
+  padding: 12px;
+  font-weight: bold;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.btn-google:hover {
+  transform: scale(1.05);
+  background: #d44638; /* Google red hover */
+}
