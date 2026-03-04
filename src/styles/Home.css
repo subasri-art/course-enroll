@@ -1,119 +1,93 @@
-/* Full-page background */
 .home-page {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url('https://www.reachivy.com/wp-content/uploads/2019/12/college-admission.jpg'); /* Replace with your logo path */
+  height: 100vh;
+  width: 100%;
+  background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url("https://www.globalcareercounsellor.com/blog/wp-content/uploads/2022/02/College-admission-process-that-fits-you.jpg");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-}
-
-/* Dark overlay to improve readability */
-.home-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 1;
-}
-
-/* Content centered above overlay */
-.home-content {
-  position: relative;
-  z-index: 2;
-  color: #fff;
-  padding: 40px;
-  max-width: 700px;
-  border-radius: 15px;
-}
-
-/* Titles */
-.home-title {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-}
-
-.home-subtitle {
-  font-size: 1.2rem;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-}
-
-/* Buttons */
-.btn-home {
-  width: 250px;
-  padding: 12px;
-  font-weight: bold;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
-
-.btn-home:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-}
-
-/* Different button colors */
-.btn-primary {
-  background: linear-gradient(90deg, #007bff, #00d4ff);
-  border: none;
-  color: #fff;
-}
-
-.btn-success {
-  background: linear-gradient(90deg, #28a745, #85e085);
-  border: none;
-  color: #fff;
-}
-
-.btn-danger {
-  background: linear-gradient(90deg, #dc3545, #ff7f7f);
-  border: none;
-  color: #fff;
-}
-/* Fade + Slide Animation */
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.home-content {
-  animation: fadeSlideUp 1s ease forwards;
-}
-.btn-home,
-.login-btn,
-.btn-register {
+  color: white;
   position: relative;
   overflow: hidden;
 }
 
-.btn-home::after,
-.login-btn::after,
-.btn-register::after {
-  content: "";
+/* Hero Section */
+.home-content {
   position: absolute;
-  width: 0;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background: rgba(255,255,255,0.3);
-  transition: width 0.4s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  max-width: 800px;
+  animation: fadeUp 1s ease;
 }
 
-.btn-home:hover::after,
-.login-btn:hover::after,
-.btn-register:hover::after {
-  width: 100%;
+.home-content h1 {
+  font-size: 3.2rem;
+  margin-bottom: 20px;
+}
+
+.tagline {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #e0e7ff;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  opacity: 0.9;
+}
+
+/* Hero Buttons */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.main-btn {
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.secondary-btn {
+  padding: 12px 24px;
+  border-radius: 30px;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.main-btn:hover {
+  background: #1d4ed8;
+  transform: scale(1.05);
+}
+
+.secondary-btn:hover {
+  background: white;
+  color: black;
+  transform: scale(1.05);
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }

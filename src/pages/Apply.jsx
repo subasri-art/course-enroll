@@ -51,7 +51,7 @@ function Apply() {
           <p><strong>Fees:</strong> ₹{selectedCourse.fees}</p>
 
           <form onSubmit={handleSubmit}>
-
+  
             <input
               type="text"
               name="name"

@@ -1,0 +1,139 @@
+.admin-container {
+  min-height: 100vh;
+  padding: 40px;
+  background: linear-gradient(to right, #eef2f3, #d9e2ec);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+/* ===== COURSES SECTION ===== */
+.courses-section {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin-bottom: 50px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.courses-section h2 {
+  margin-bottom: 20px;
+}
+
+/* ===== APPLICATION SECTION ===== */
+.applications-section {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.applications-section h2 {
+  margin-bottom: 20px;
+}
+
+/* Table */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.admin-table th {
+  background-color: #0077b6;
+  color: white;
+}
+
+/* Application Card */
+.application-card {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-details p {
+  margin: 5px 0;
+}
+
+.status {
+  margin-left: 10px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.status.Approved {
+  background: #28a745;
+  color: white;
+}
+
+.status.Rejected {
+  background: #dc3545;
+  color: white;
+}
+
+.status.Under\ Review {
+  background: orange;
+  color: white;
+}
+
+/* Buttons */
+.action-buttons button {
+  padding: 8px 16px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.approve-btn {
+  background: #28a745;
+  color: white;
+}
+
+.reject-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.approve-btn:hover,
+.reject-btn:hover {
+  opacity: 0.8;
+}
+
+.no-app {
+  font-style: italic;
+}
+.dashboard-btn {
+  padding: 12px 25px;
+  background: linear-gradient(to right, #2a5298, #1e3c72);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.dashboard-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}

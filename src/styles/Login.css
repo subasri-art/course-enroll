@@ -1,103 +1,82 @@
-/* Full-page background with ESEC logo */
 .login-page {
-  min-height: 100vh;
+  height: 100vh;
+  background: 
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1");
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('https://www.google.com/imgres?q=esec%20logo&imgurl=https%3A%2F%2Fyt3.googleusercontent.com%2FYqIFJ23VQNEpWwBQksyXyqQapXaM1l6t3a9tTnaXKuQIiV8VzlrMWoiLSS97xJ-3HRCizpEE%3Ds900-c-k-c0x00ffffff-no-rj&imgrefurl=https%3A%2F%2Fwww.youtube.com%2F%40esecindia&docid=TaCmeLtHJf10YM&tbnid=Ip5yw0RB3WnIdM&vet=12ahUKEwjm-JDClIOTAxWCTmwGHRVLCIgQnPAOegQIGRAB..i&w=900&h=900&hcb=2&ved=2ahUKEwjm-JDClIOTAxWCTmwGHRVLCIgQnPAOegQIGRAB'); 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
+  font-family: "Segoe UI", sans-serif;
 }
 
-/* Overlay to make text readable */
-.login-page::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
-}
-
-/* Centered form container */
-.login-form-container {
-  position: relative;
-  z-index: 2;
-  background-color: rgba(255, 255, 255, 0.95);
-  padding: 40px 30px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+/* Glass Card */
+.login-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
   width: 350px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: fadeIn 1s ease;
 }
 
-/* Input fields */
-.input-field {
-  border-radius: 10px;
+.login-card h2 {
+  margin-bottom: 10px;
+}
+
+.login-subtitle {
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+/* Inputs */
+.login-card input {
+  width: 100%;
   padding: 12px;
-  border: 1px solid #ccc;
-  transition: all 0.3s ease;
-}
-
-.input-field:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-}
-
-/* Login button */
-.login-btn {
-  border-radius: 10px;
-  padding: 12px;
-  background: linear-gradient(90deg, #007bff, #00d4ff);
+  margin: 10px 0;
+  border-radius: 8px;
   border: none;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+/* Button */
+.login-card button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(45deg, #2563eb, #00c6ff);
   color: white;
   font-weight: bold;
-  transition: all 0.3s ease;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.login-btn:hover {
-  background: linear-gradient(90deg, #00d4ff, #007bff);
+.login-card button:hover {
   transform: scale(1.05);
 }
 
-/* Google button */
-.google-btn {
-  border-radius: 10px;
-  padding: 12px;
-  font-weight: bold;
-  transition: all 0.3s ease;
+.extra-text {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  opacity: 0.8;
 }
 
-.google-btn:hover {
-  transform: scale(1.05);
-  background: #d44638; /* Darker red on hover */
-}
-.btn-home,
-.login-btn,
-.btn-register {
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-home::after,
-.login-btn::after,
-.btn-register::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background: rgba(255,255,255,0.3);
-  transition: width 0.4s ease;
-}
-
-.btn-home:hover::after,
-.login-btn:hover::after,
-.btn-register:hover::after {
-  width: 100%;
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

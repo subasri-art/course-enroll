@@ -1,0 +1,86 @@
+/* Full Background */
+.admin-login-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)),
+    url("https://images.freeimages.com/fic/images/icons/2526/bloggers/256/admin.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Glass Card */
+.admin-login-card {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(18px);
+  padding: 50px;
+  width: 380px;
+  border-radius: 20px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+  animation: fadeUp 0.6s ease;
+}
+
+/* Title */
+.admin-login-card h1 {
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.subtitle {
+  font-size: 14px;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+/* Inputs */
+.admin-login-card input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 18px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Button */
+.admin-login-card button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.admin-login-card button:hover {
+  transform: scale(1.05);
+}
+
+/* Error */
+.error-text {
+  color: #ff4d4d;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

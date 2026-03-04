@@ -1,26 +1,63 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/AdminLogin.css";
 
 function AdminLogin() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: ""
+  });
+
+  const [error, setError] = useState("");
+
+  const handleChange = (e) => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value
+    });
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username === "admin" && password === "admin123") navigate("/admin");
-    else alert("Invalid Admin Credentials");
+
+    // Simple Admin Authentication
+    if (credentials.username === "admin" && credentials.password === "admin123") {
+      localStorage.setItem("isAdminLoggedIn", "true");
+      navigate("/Admin");
+    } else {
+      setError("Invalid Admin Credentials ❌");
+    }
   };
 
   return (
-    <div className="login-page">
-      <div className="login-form-container">
-        <h2>Admin Login</h2>
+    <div className="admin-login-page">
+      <div className="admin-login-card">
+
+        <h1>Admin Portal</h1>
+        <p className="subtitle">Secure Administrative Access</p>
+
         <form onSubmit={handleLogin}>
-          <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} />
-          <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-          <button className="btn login-btn mt-3 w-100">Login</button>
+          <input
+            type="text"
+            name="username"
+            placeholder="Admin Username"
+            onChange={handleChange}
+          />
+
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+          />
+
+          {error && <p className="error-text">{error}</p>}
+
+          <button type="submit">Login as Admin</button>
         </form>
+
       </div>
     </div>
   );

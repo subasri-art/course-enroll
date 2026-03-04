@@ -1,84 +1,81 @@
-/* Full-page background */
+/* Full Page Background */
 .register-page {
   min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #1e3c72, #2a5298, #4e89ff);
+  font-family: 'Segoe UI', sans-serif;
+  padding: 40px 20px;
 }
 
-/* Centered card */
-.register-form-container {
-  width: 350px;
-  background: rgba(255, 255, 255, 0.95);
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-  text-align: center;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Form Container */
+.register-form {
+  background: #fff;
+  padding: 40px 30px;
+  width: 450px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.6s ease-in-out;
 }
 
 /* Title */
-.register-title {
-  margin-bottom: 20px;
-  font-weight: bold;
+.register-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1e3c72;
+  font-size: 26px;
+  font-weight: 600;
 }
 
-/* Form */
-.register-form-container form {
+/* Input Fields */
+.register-form input,
+.register-form select {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Inputs */
-.input-field {
-  width: 100%;
-  padding: 12px;
+  padding: 14px;
+  margin-bottom: 18px;
   border-radius: 10px;
   border: 1px solid #ccc;
-  transition: 0.3s;
-}
-
-.input-field:focus {
+  font-size: 15px;
   outline: none;
-  border-color: #1e3c72;
-  box-shadow: 0 0 8px rgba(30, 60, 114, 0.4);
+  transition: 0.3s ease;
 }
 
-/* Buttons */
-.btn-register,
-.btn-google {
+/* Focus Effect */
+.register-form input:focus,
+.register-form select:focus {
+  border-color: #2a5298;
+  box-shadow: 0 0 10px rgba(42, 82, 152, 0.3);
+}
+
+/* Submit Button */
+.register-form button {
   width: 100%;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 16px;
   border: none;
+  border-radius: 30px;
+  background: linear-gradient(to right, #2a5298, #1e3c72);
+  color: white;
+  font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
-/* Register Button */
-.btn-register {
-  background: linear-gradient(90deg, #1e3c72, #4e89ff);
-  color: white;
-}
-
-.btn-register:hover {
+/* Button Hover */
+.register-form button:hover {
   transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* Google Button */
-.btn-google {
-  background: #db4437;
-  color: white;
-}
-
-.btn-google:hover {
-  transform: scale(1.05);
-  background: #c23321;
+/* Fade Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

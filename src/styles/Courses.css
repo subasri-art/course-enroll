@@ -1,0 +1,185 @@
+/* Full page */
+.courses-page {
+  background: linear-gradient(to right, #f4f7fb, #e9eef5);
+  min-height: 100vh;
+  padding-bottom: 60px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hero Section */
+.courses-hero {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  padding: 40px;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.courses-hero h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+/* Logout Button - Top Right */
+.logout-btn {
+  position: absolute;
+  right: 30px;
+  top: 40px;
+  padding: 10px 18px;
+  background: white;
+  color: #1e3c72;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #ff4d4d;
+  color: white;
+}
+
+/* Cutoff Section */
+.mark-section {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.mark-section label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.mark-section input {
+  padding: 14px 18px;
+  width: 250px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.mark-section input:focus {
+  border-color: #2a5298;
+  box-shadow: 0 0 8px rgba(42,82,152,0.3);
+}
+
+/* Course Cards */
+.courses-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.course-card {
+  background: white;
+  padding: 25px;
+  width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: 0.3s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-8px);
+}
+
+.course-card h2 {
+  color: #1e3c72;
+  font-size: 18px;
+}
+
+.course-card p {
+  margin: 8px 0;
+  color: #555;
+}
+
+/* Eligibility text */
+.eligible {
+  color: green;
+  font-weight: bold;
+}
+
+.not-eligible {
+  color: red;
+  font-weight: bold;
+}
+
+/* Apply Button */
+.course-card button {
+  margin-top: 15px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(to right, #2a5298, #1e3c72);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.course-card button:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.course-card button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+/* Wrapper spacing */
+.mark-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+/* Modern glass style box */
+.mark-box {
+  background: white;
+  padding: 25px 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  width: 320px;
+}
+
+/* Label */
+.mark-box label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #1e3c72;
+}
+
+/* Input */
+.mark-box input {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Remove number arrows (Chrome) */
+.mark-box input::-webkit-outer-spin-button,
+.mark-box input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Focus effect */
+.mark-box input:focus {
+  border-color: #2a5298;
+  box-shadow: 0 0 10px rgba(42, 82, 152, 0.3);
+}

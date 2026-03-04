@@ -6,38 +6,38 @@ function Home() {
 
   return (
     <div className="home-page">
-      <div className="home-overlay"></div>
 
-      <div className="home-content text-center">
-        <h1 className="home-title">🎓 Engineering Admission Portal</h1>
-        <p className="home-subtitle">
-          Welcome to our online admission system.
-          Apply for top engineering courses easily and securely.
+      <div className="home-content">
+        <h1>Engineering Admission Portal </h1>
+
+        <p className="tagline">
+          Empowering Future Engineers with Excellence in Education
         </p>
 
-        <div className="mt-4">
+        <p className="description">
+          Welcome to our smart and transparent online admission system.
+          Apply for top engineering courses, track your admission status,
+          and manage your application with ease. Our institution is committed
+          to academic excellence, innovation, and career success.
+        </p>
+
+        <div className="hero-buttons">
           <button
-            className="btn btn-primary btn-home m-2"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/dashboard")}
+            className="main-btn"
           >
-            Student Login
+            Get Started
           </button>
 
           <button
-            className="btn btn-success btn-home m-2"
-            onClick={() => navigate("/login?checkStatus=true")}
+            onClick={() => navigate("/about")}
+            className="secondary-btn"
           >
-            Check Status
-          </button>
-
-          <button
-            className="btn btn-danger btn-home m-2"
-            onClick={() => navigate("/admin-login")}
-          >
-            Admin Login
+            Learn More
           </button>
         </div>
       </div>
+
     </div>
   );
 }

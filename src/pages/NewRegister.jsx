@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 
-function Login() {
+function NewRegister() {
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
   });
@@ -14,28 +15,42 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find(
-      (u) => u.email === formData.email && u.password === formData.password
-    );
 
-    if (user) {
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("studentEmail", formData.email);
-      navigate("/Courses");
-    } else {
-      alert("Invalid credentials! Please register first if new user.");
+    if (!formData.name || !formData.email || !formData.password) {
+      alert("Please fill all fields");
+      return;
     }
+
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const exists = users.find((u) => u.email === formData.email);
+
+    if (exists) {
+      alert("User already registered! Please login.");
+      navigate("/login");
+      return;
+    }
+
+    users.push(formData);
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Registration successful! Please login.");
+    navigate("/login");
   };
 
   return (
     <div className="login-page">
       <div className="login-card">
-        <h2>Student Login</h2>
-
-        <form onSubmit={handleSubmit}>
+        <h2>Student Registration</h2>
+        <form onSubmit={handleRegister}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
           <input
             type="email"
             name="email"
@@ -47,26 +62,16 @@ function Login() {
           <input
             type="password"
             name="password"
-            placeholder="Enter Password"
+            placeholder="Create Password"
             value={formData.password}
             onChange={handleChange}
             required
           />
-
-          <div style={{ display: "flex", justifyContent: "space-between", marginTop: "15px" }}>
-            <button type="submit">Login</button>
-            <button
-              type="button"
-              style={{ backgroundColor: "#28a745", color: "#fff" }}
-              onClick={() => navigate("/NewRegister")}
-            >
-              Register
-            </button>
-          </div>
+          <button type="submit">Register</button>
         </form>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default NewRegister;

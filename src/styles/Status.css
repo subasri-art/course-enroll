@@ -1,0 +1,86 @@
+/* Full Background Image */
+.status-page {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+    url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 20px;
+}
+
+/* Glass Card */
+.status-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(15px);
+  padding: 50px;
+  width: 480px;
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  animation: fadeUp 0.6s ease;
+}
+
+/* Title */
+.status-title {
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+/* Details */
+.status-details p {
+  margin: 12px 0;
+  font-size: 16px;
+}
+
+/* Highlight ID */
+.highlight {
+  color: #00ffcc;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Success Badge */
+.success-badge {
+  margin-top: 30px;
+  padding: 12px 20px;
+  background: #00c851;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Dashboard Button */
+.dashboard-btn {
+  margin-top: 25px;
+  padding: 12px 25px;
+  background: linear-gradient(to right, #2a5298, #1e3c72);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.dashboard-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}

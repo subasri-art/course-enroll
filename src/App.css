@@ -4,6 +4,18 @@
   padding: 2rem;
   text-align: center;
 }
+/* Remove all default spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Remove white background */
+body, html, #root {
+  height: 100%;
+  background: transparent;
+}
 
 .logo {
   height: 6em;
