@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "../styles/Home.css"; // import the CSS
+import "../styles/Home.css";
 
 function Home() {
   const navigate = useNavigate();
@@ -7,32 +7,34 @@ function Home() {
   return (
     <div className="home-page">
       <div className="home-overlay"></div>
+
       <div className="home-content text-center">
-        <h1 className="home-title">Welcome to Engineering Admission Portal</h1>
-        <p className="home-subtitle mt-3">
-          Access your courses and manage admissions easily. Please login or register to continue.
+        <h1 className="home-title">🎓 Engineering Admission Portal</h1>
+        <p className="home-subtitle">
+          Welcome to our online admission system.
+          Apply for top engineering courses easily and securely.
         </p>
 
-        <div className="mt-4 d-flex flex-column gap-3 align-items-center home-buttons">
-          <button 
-            className="btn btn-primary btn-home"
+        <div className="mt-4">
+          <button
+            className="btn btn-primary btn-home m-2"
             onClick={() => navigate("/login")}
           >
-            Login
+            Student Login
           </button>
 
-          <button 
-            className="btn btn-success btn-home"
-            onClick={() => navigate("/register")}
+          <button
+            className="btn btn-success btn-home m-2"
+            onClick={() => navigate("/login?checkStatus=true")}
           >
-            Register
+            Check Status
           </button>
 
-          <button 
-            className="btn btn-danger btn-home"
-            onClick={() => navigate("/google-login")}
+          <button
+            className="btn btn-danger btn-home m-2"
+            onClick={() => navigate("/admin-login")}
           >
-            Register / Login with Google
+            Admin Login
           </button>
         </div>
       </div>

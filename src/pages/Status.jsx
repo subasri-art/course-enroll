@@ -1,11 +1,30 @@
-function Status() {
-  return (
-    <div className="container mt-5">
-      <h2>Application Status</h2>
+// Status.jsx
+import { useLocation, useNavigate } from "react-router-dom";
 
-      <div className="alert alert-info mt-3">
-        Your application is under review.
-      </div>
+function Status() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const student = location.state?.student;
+
+  if (!student) {
+    navigate("/"); // If no student data, go home
+    return null;
+  }
+
+  return (
+    <div style={{ padding: "30px", textAlign: "center" }}>
+      <h2>Application Submitted</h2>
+      <p><strong>Admission ID:</strong> {student.applicationId}</p>
+      <p><strong>Name:</strong> {student.name}</p>
+      <p><strong>Course:</strong> {student.course}</p>
+      <p><strong>Status:</strong> ⏳ Under Review</p>
+
+      <button
+        onClick={() => navigate("/")}
+        style={{ marginTop: "20px", padding: "10px 20px" }}
+      >
+        Back to Home
+      </button>
     </div>
   );
 }

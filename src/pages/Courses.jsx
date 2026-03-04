@@ -1,69 +1,73 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Courses() {
-
   const navigate = useNavigate();
 
-  const [courses, setCourses] = useState([
-    { id: 1, name: "B.E Computer Science Engineering", fees: 75000, totalSeats: 60, availableSeats: 10 },
-    { id: 2, name: "B.E Mechanical Engineering", fees: 65000, totalSeats: 60, availableSeats: 8 },
-    { id: 3, name: "B.E Civil Engineering", fees: 60000, totalSeats: 60, availableSeats: 12 },
-    { id: 4, name: "B.E Electrical and Electronics Engineering", fees: 70000, totalSeats: 60, availableSeats: 5 },
-    { id: 5, name: "B.E Electronics and Communication Engineering", fees: 72000, totalSeats: 60, availableSeats: 9 },
-    { id: 6, name: "B.Tech Artificial Intelligence and Data Science", fees: 85000, totalSeats: 60, availableSeats: 4 },
-    { id: 7, name: "B.Tech Information Technology", fees: 73000, totalSeats: 60, availableSeats: 7 },
-    { id: 8, name: "B.Tech Cyber Security", fees: 90000, totalSeats: 60, availableSeats: 3 },
-    { id: 9, name: "B.E Automobile Engineering", fees: 68000, totalSeats: 60, availableSeats: 6 },
-    { id: 10, name: "B.E Biomedical Engineering", fees: 80000, totalSeats: 60, availableSeats: 2 }
-  ]);
+  const defaultCourses = [
+    { id: 1, name: "B.E Computer Science Engineering", cutoff: 170, totalSeats: 40, availableSeats: 25 },
+    { id: 2, name: "B.E Mechanical Engineering", cutoff: 150, totalSeats: 40, availableSeats: 24 },
+    { id: 3, name: "B.E Civil Engineering", cutoff: 140, totalSeats: 40, availableSeats: 25 },
+    { id: 4, name: "B.E Electrical and Electronics Engineering", cutoff: 155, totalSeats: 40, availableSeats: 16 },
+    { id: 5, name: "B.E Electronics and Communication Engineering", cutoff: 165, totalSeats: 40, availableSeats: 30 }
+  ];
+
+  const [courses, setCourses] = useState([]);
+  const [mark, setMark] = useState("");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("courses");
+    if (saved) {
+      const fixedCourses = JSON.parse(saved).map(c => ({
+        ...c,
+        availableSeats: Math.max(0, c.availableSeats)
+      }));
+      setCourses(fixedCourses);
+      localStorage.setItem("courses", JSON.stringify(fixedCourses));
+    } else {
+      localStorage.setItem("courses", JSON.stringify(defaultCourses));
+      setCourses(defaultCourses);
+    }
+  }, []);
+
+  const checkEligibility = (course) => {
+    if (course.availableSeats <= 0) {
+      alert("Seats Full!");
+      return;
+    }
+    if (mark >= course.cutoff) {
+      const updatedCourses = courses.map(c =>
+        c.id === course.id ? { ...c, availableSeats: Math.max(0, c.availableSeats - 1) } : c
+      );
+      setCourses(updatedCourses);
+      localStorage.setItem("courses", JSON.stringify(updatedCourses));
+      navigate("/register", { state: { selectedCourse: course, userMark: mark } });
+    } else {
+      alert("You are not eligible for this course");
+    }
+  };
 
   return (
-    <div className="container mt-5">
-      <h2>Engineering Courses</h2>
+    <div style={{ padding: "30px" }}>
+      <h2>Enter Your Mark (Out of 200)</h2>
+      <input
+        type="number"
+        value={mark}
+        onChange={(e) => setMark(e.target.value)}
+        style={{ marginBottom: "20px" }}
+      />
 
-      <div className="row">
-        {courses.map((course) => (
-          <div className="col-md-4 mt-3" key={course.id}>
-            <div className="card shadow">
-              <div className="card-body">
-
-                <h5>{course.name}</h5>
-                <p><strong>Course Fees:</strong> ₹{course.fees}</p>
-
-                <p>
-                  <strong>Available Seats:</strong>{" "}
-                  <span className={
-                    course.availableSeats === 0
-                      ? "text-danger"
-                      : "text-success"
-                  }>
-                    {course.availableSeats}
-                  </span>
-                </p>
-
-                {course.availableSeats === 0 ? (
-                  <button className="btn btn-danger" disabled>
-                    Full
-                  </button>
-                ) : (
-                  <button
-                    className="btn btn-primary"
-                    onClick={() =>
-                      navigate("/apply", {
-                        state: { selectedCourse: course }
-                      })
-                    }
-                  >
-                    Register
-                  </button>
-                )}
-
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <h3>Courses</h3>
+      {courses.map((course) => (
+        <div key={course.id} style={{ marginTop: "15px", border: "1px solid gray", padding: "10px" }}>
+          <p><strong>{course.name}</strong></p>
+          <p>Cutoff: {course.cutoff}</p>
+          <p>Available Seats: {course.availableSeats === 0 ? "Full" : course.availableSeats}</p>
+          <button onClick={() => checkEligibility(course)} disabled={course.availableSeats === 0}>
+            {course.availableSeats === 0 ? "Full" : "Apply"}
+          </button>
+        </div>
+      ))}
     </div>
   );
 }

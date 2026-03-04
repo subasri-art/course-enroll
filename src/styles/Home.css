@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu1FV6yRblEq97Iw-eTzlsHl2yq0g21sA1AA&s'); /* Replace with your logo path */
+  background-image: url('https://www.reachivy.com/wp-content/uploads/2019/12/college-admission.jpg'); /* Replace with your logo path */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -76,4 +76,44 @@
   background: linear-gradient(90deg, #dc3545, #ff7f7f);
   border: none;
   color: #fff;
+}
+/* Fade + Slide Animation */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-content {
+  animation: fadeSlideUp 1s ease forwards;
+}
+.btn-home,
+.login-btn,
+.btn-register {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-home::after,
+.login-btn::after,
+.btn-register::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(255,255,255,0.3);
+  transition: width 0.4s ease;
+}
+
+.btn-home:hover::after,
+.login-btn:hover::after,
+.btn-register:hover::after {
+  width: 100%;
 }

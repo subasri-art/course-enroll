@@ -1,86 +1,63 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import "../styles/Register.css";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const selectedCourse = location.state?.selectedCourse;
+  const userMark = location.state?.userMark;
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    password: ""
+    password: "",
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    alert("Registration Successful!");
-    navigate("/courses");
-  };
+    if (!formData.name || !formData.email || !formData.phone || !formData.password) {
+      return alert("Fill all fields");
+    }
 
-  const handleGoogleRegister = () => {
-    alert("Google Registration clicked!");
+    const courses = JSON.parse(localStorage.getItem("courses")) || [];
+    const courseData = courses.find((c) => c.id === selectedCourse.id);
+    if (!courseData || courseData.availableSeats <= 0) return alert("Seats Full!");
+
+    const applicationId = "ADM" + Math.floor(Math.random() * 100000);
+    const studentData = { ...formData, course: selectedCourse.name, mark: userMark, status: "Under Review", applicationId };
+    localStorage.setItem("studentApplication", JSON.stringify(studentData));
+
+    const updatedCourses = courses.map((c) =>
+      c.id === selectedCourse.id ? { ...c, availableSeats: c.availableSeats - 1 } : c
+    );
+    localStorage.setItem("courses", JSON.stringify(updatedCourses));
+
+    navigate("/status");
   };
 
   return (
     <div className="register-page">
-      <div className="register-overlay"></div>
-      <div className="register-form-container text-center">
-        <h2 className="mb-3">Student Registration</h2>
-        <p className="mb-4">Fill in your details to register or use Google account.</p>
-
-        <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
-          <input 
-            name="name" 
-            placeholder="Name" 
-            className="form-control input-field" 
-            value={formData.name} 
-            onChange={handleChange} 
-            required
-          />
-          <input 
-            name="email" 
-            placeholder="Email" 
-            className="form-control input-field" 
-            value={formData.email} 
-            onChange={handleChange} 
-            required
-          />
-          <input 
-            name="phone" 
-            placeholder="Phone" 
-            className="form-control input-field" 
-            value={formData.phone} 
-            onChange={handleChange} 
-            required
-          />
-          <input 
-            type="password" 
-            name="password" 
-            placeholder="Password" 
-            className="form-control input-field" 
-            value={formData.password} 
-            onChange={handleChange} 
-            required
-          />
-          <button type="submit" className="btn btn-success btn-register">
-            Register
-          </button>
+      <div className="register-form-container">
+        {selectedCourse && (
+          <div className="mb-3 text-success">
+            <h5>Eligible for: {selectedCourse.name}</h5>
+            <p>Your Marks: {userMark}</p>
+            <p>Available Seats: {selectedCourse.availableSeats}</p>
+          </div>
+        )}
+        <h2>Create Account</h2>
+        <form onSubmit={handleRegister}>
+          <input type="text" name="name" placeholder="Full Name" onChange={handleChange} />
+          <input type="email" name="email" placeholder="Email" onChange={handleChange} />
+          <input type="tel" name="phone" placeholder="Phone Number" maxLength="10" onChange={handleChange} />
+          <input type="password" name="password" placeholder="Password" onChange={handleChange} />
+          <button className="btn-register">Submit Application</button>
         </form>
-
-        <button 
-          className="btn btn-danger btn-google mt-3"
-          onClick={handleGoogleRegister}
-        >
-          Register / Login with Google
-        </button>
-
-        <p className="mt-3">
-          Already have an account? <Link to="/login">Login here</Link>
-        </p>
       </div>
     </div>
   );
