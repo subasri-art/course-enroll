@@ -14,19 +14,31 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find(
-      (u) => u.email === formData.email && u.password === formData.password
-    );
 
-    if (user) {
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("studentEmail", formData.email);
-      navigate("/Courses");
-    } else {
-      alert("Invalid credentials! Please register first if new user.");
+    try {
+      const response = await fetch("http://localhost:8080/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const user = await response.json();
+        // Save user info in local storage if needed for session
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("studentEmail", user.email);
+        navigate("/Courses");
+      } else {
+        const data = await response.json();
+        alert(data.message || "Invalid credentials! Please register first.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong. Try again later.");
     }
   };
 

@@ -15,7 +15,7 @@ function NewRegister() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.password) {
@@ -23,19 +23,26 @@ function NewRegister() {
       return;
     }
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const exists = users.find((u) => u.email === formData.email);
+    try {
+      const response = await fetch("http://localhost:8080/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    if (exists) {
-      alert("User already registered! Please login.");
-      navigate("/login");
-      return;
+      if (response.ok) {
+        alert("Registration successful! Please login.");
+        navigate("/login");
+      } else {
+        const data = await response.json();
+        alert(data.message || "User already registered! Please login.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong. Try again later.");
     }
-
-    users.push(formData);
-    localStorage.setItem("users", JSON.stringify(users));
-    alert("Registration successful! Please login.");
-    navigate("/login");
   };
 
   return (

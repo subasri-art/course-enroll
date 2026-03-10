@@ -1,0 +1,121 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #234b87, #c3cfe2);
+    margin: 0;
+    padding: 0;
+}
+
+.checkstatus-container {
+    max-width: 520px;
+    margin: 60px auto;
+    padding: 35px 25px;
+    background: #ffffffcc;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    text-align: center;
+    color: #333;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #007bff;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.checkstatus-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.email-input {
+    padding: 14px 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.email-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0,123,255,0.2);
+}
+
+.submit-btn {
+    padding: 14px;
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(45deg, #0056b3, #00aaff);
+}
+
+.error-message {
+    color: #dc3545;
+    font-weight: 500;
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.status-card {
+    margin-top: 25px;
+    padding: 25px;
+    background: linear-gradient(145deg, #ffffff, #f1f5f9);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    text-align: left;
+    color: #333;
+}
+
+.status-card h3 {
+    margin-bottom: 18px;
+    font-size: 22px;
+    color: #007bff;
+    text-align: center;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.status-card p {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.status {
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status.approved {
+    background: linear-gradient(45deg, #28a745, #71dd8a);
+}
+
+.status.rejected {
+    background: linear-gradient(45deg, #dc3545, #f57c7c);
+}
+
+.status.pending {
+    background: linear-gradient(45deg, #ffc107, #ffe680);
+    color: #212529;
+}

@@ -7,18 +7,29 @@ function Status() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    if (!isLoggedIn) {
-      navigate("/login");
-      return;
-    }
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  if (!isLoggedIn) {
+    navigate("/login");
+    return;
+  }
 
-    const saved = localStorage.getItem("studentApplication");
-    if (saved) {
-      setData(JSON.parse(saved));
-    }
-  }, [navigate]);
+  const applicationId = localStorage.getItem("applicationId"); // get latest ID
+  if (!applicationId) return;
 
+  const fetchApplication = async () => {
+    try {
+      const res = await fetch(`http://localhost:8080/student/${applicationId}`);
+      if (!res.ok) throw new Error("Failed to fetch application");
+      const data = await res.json();
+      setData(data); // set latest student data
+    } catch (err) {
+      console.error(err);
+      alert("Could not fetch application details.");
+    }
+  };
+
+  fetchApplication();
+}, [navigate]);
   if (!data) {
     return (
       <div className="status-page">

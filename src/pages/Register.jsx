@@ -16,149 +16,92 @@ function Register() {
     marks10: "",
     marks12: "",
     group12: "",
-    cutoff: "",
+    cutoff: ""
   });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
-    const {
-      name,
-      email,
-      phone,
-      schoolName,
-      roll12,
-      marks10,
-      marks12,
-      group12,
-      cutoff,
-    } = formData;
-
-    if (
-      !name ||
-      !email ||
-      !phone ||
-      !schoolName ||
-      !roll12 ||
-      !marks10 ||
-      !marks12 ||
-      !group12 ||
-      !cutoff
-    ) {
-      return alert("Please fill all fields");
-    }
-
     if (!selectedCourse) {
-      return alert("No course selected");
+      alert("No course selected");
+      return;
     }
 
-    const courses = JSON.parse(localStorage.getItem("courses")) || [];
-    const courseData = courses.find((c) => c.id === selectedCourse.id);
-
-    if (!courseData || courseData.availableSeats <= 0) {
-      return alert("Seats Full!");
-    }
-
-    // Generate unique Admission ID
-    const applicationId = "ADM" + Math.floor(Math.random() * 100000);
-
-    // Save student application
-    const studentData = {
+    // Prepare the full student application data
+    const applicationData = {
       ...formData,
       course: selectedCourse.name,
-      status: "Under Review",
-      applicationId,
+      status: "Pending" // Default status stored in DB
     };
+    fetch("http://localhost:8080/student/register", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(applicationData)
+})
 
-    localStorage.setItem("studentApplication", JSON.stringify(studentData));
+    try {
+      const res = await fetch("http://localhost:8080/student/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(applicationData)
+      });
 
-    // Update available seats
-    const updatedCourses = courses.map((c) =>
-      c.id === selectedCourse.id
-        ? { ...c, availableSeats: c.availableSeats - 1 }
-        : c
-    );
-    localStorage.setItem("courses", JSON.stringify(updatedCourses));
+      if (!res.ok) {
+        alert("Failed to submit application");
+        return;
+      }
 
-    // Navigate to Status page
-    navigate("/Status");
+      const data = await res.json();
+
+      // Save application ID locally if needed for CheckStatus
+      localStorage.setItem("applicationId", data.id);
+
+      alert("Application Submitted Successfully!");
+      navigate("/status"); // redirect to CheckStatus page
+
+    } catch (err) {
+      console.log(err);
+      alert("Something went wrong while submitting your application");
+    }
   };
 
   return (
     <div className="register-page">
+
       <div className="register-form">
-        <h2>Apply for {selectedCourse?.name || "Selected Course"}</h2>
+
+        <h2>Apply for {selectedCourse?.name}</h2>
 
         <form onSubmit={handleRegister}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            value={formData.phone}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="schoolName"
-            placeholder="School Name"
-            value={formData.schoolName}
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            name="roll12"
-            placeholder="12th Roll Number"
-            value={formData.roll12}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            name="marks10"
-            placeholder="10th Marks (%)"
-            value={formData.marks10}
-            onChange={handleChange}
-          />
-          <input
-            type="number"
-            name="marks12"
-            placeholder="12th Marks (%)"
-            value={formData.marks12}
-            onChange={handleChange}
-          />
-          <select name="group12" value={formData.group12} onChange={handleChange}>
-            <option value="">Select 12th Group</option>
+
+          <input type="text" name="name" placeholder="Full Name" onChange={handleChange} required />
+          <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+          <input type="tel" name="phone" placeholder="Phone" onChange={handleChange} required />
+          <input type="text" name="schoolName" placeholder="School Name" onChange={handleChange} required />
+          <input type="text" name="roll12" placeholder="12th Roll Number" onChange={handleChange} required />
+          <input type="number" name="marks10" placeholder="10th Marks" onChange={handleChange} required />
+          <input type="number" name="marks12" placeholder="12th Marks" onChange={handleChange} required />
+
+          <select name="group12" onChange={handleChange} required>
+            <option value="">Select Group</option>
             <option value="Biology">Biology</option>
             <option value="Computer Science">Computer Science</option>
           </select>
-          <input
-            type="number"
-            name="cutoff"
-            placeholder="Cutoff Marks"
-            value={formData.cutoff}
-            onChange={handleChange}
-          />
+
+          <input type="number" name="cutoff" placeholder="Cutoff Marks" onChange={handleChange} required />
 
           <button type="submit">Submit Application</button>
+
         </form>
+
       </div>
+
     </div>
   );
 }
